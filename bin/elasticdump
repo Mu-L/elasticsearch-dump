@@ -151,7 +151,10 @@ if (argv.help === true) {
 
   dumper.on('log', function (message) { args.log('log', message) })
   dumper.on('debug', function (message) { args.log('debug', message) })
-  dumper.on('error', function (error) { args.log('error', `Error Emitted => ${error.message || JSON.stringify(error)}`) })
+  dumper.on('error', function (error) {
+    args.log('error', `Error Emitted => ${error.message || JSON.stringify(error)}`)
+    process.exit(1)
+  })
 
   dumper.dump(function (error) {
     if (error) {
